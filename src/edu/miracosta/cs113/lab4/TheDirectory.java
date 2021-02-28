@@ -1,8 +1,6 @@
-package lab4;
+package edu.miracosta.cs113.lab4;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Objects;
 
 public class TheDirectory

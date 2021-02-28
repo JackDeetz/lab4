@@ -1,4 +1,4 @@
-package lab4;
+package edu.miracosta.cs113.lab4;
 
 import org.junit.jupiter.api.Test;
 

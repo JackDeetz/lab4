@@ -1,6 +1,6 @@
 package lab4;
 
-public class DirectoryEntry
+public class DirectoryEntry implements Cloneable
 {
     private String mName ;
     private String mNumber ;
@@ -25,9 +25,16 @@ public class DirectoryEntry
     }
 
     public void setname(String name) {
-        this.mName = mName;
+        this.mName = name;
     }
 
+//    @Override
+//    public DirectoryEntry clone() throws CloneNotSupportedException {
+//        DirectoryEntry temp = (DirectoryEntry) super.clone() ;
+//        return temp ;
+//    }
+
+    @Override
     public String toString()
     {
         return "(" + mName + "~~" + mNumber + ")" ;

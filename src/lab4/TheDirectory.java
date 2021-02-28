@@ -1,6 +1,8 @@
 package lab4;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class TheDirectory
@@ -11,34 +13,25 @@ public class TheDirectory
     {
         theDirectory = new ArrayList<DirectoryEntry>() ;
     }
-    public TheDirectory(TheDirectory other)
-    {
-        theDirectory = (ArrayList<DirectoryEntry>) other.theDirectory.clone();
-    }
-    public TheDirectory(ArrayList<DirectoryEntry> cloneList)
-    {
-        theDirectory = (ArrayList<DirectoryEntry>) cloneList.clone() ;
-    }
-    public void addEntry(DirectoryEntry entry)
-    {
-        theDirectory.add(entry) ;
-    }
-    public String addOrChangeEntry(String aName, String newNumber)
+
+
+    public String addOrChangeEntry(String aName, String newNumber)  //search for the newNumber(directoryEntry.mNumber), if found,update, otherwise, add to the arrayList
     {
         for (int i = 0 ; i < theDirectory.size() ; i++)
         {
-            if (theDirectory.get(i).getNumber().equals(newNumber))
+            if (theDirectory.get(i).getNumber().equals(newNumber))      //test is each number is the same as the 'new' entry
             {
-                String output = theDirectory.get(i).getname() ;
-                theDirectory.get(i).setname(aName);
-                return output ;
+                String output = theDirectory.get(i).getname() ;         //save old name to be replaced in a temperary variable, to return later
+                theDirectory.get(i).setname(aName);                     //update the Entry with the new Name
+                return output ;                                 //return replaced name
 
             }
         }
-        theDirectory.add(new DirectoryEntry(aName, newNumber)) ;
+        theDirectory.add(new DirectoryEntry(aName, newNumber)) ;    //add to arrayList if theres no entry to update
         return null ;
     }
-    public DirectoryEntry removeEntry(String aName)
+
+    public DirectoryEntry removeEntry(String aName)                 //if parameter matches any entry, remove and return the delete entry
     {
         for (int i = 0 ; i < theDirectory.size() ; i++)
         {
@@ -49,7 +42,7 @@ public class TheDirectory
                 return output ;
             }
         }
-        return null ;
+        return null ;                                                   //otherwise, return null
     }
 
     public String toString()
@@ -70,8 +63,24 @@ public class TheDirectory
         return Objects.equals(theDirectory, that.theDirectory);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(theDirectory);
+    /*
+        public TheDirectory(TheDirectory other) throws CloneNotSupportedException {
+            theDirectory = new ArrayList<>() ;
+            Iterator<DirectoryEntry> theDirectoryIterator = other.theDirectory.iterator() ;
+            {
+                while (theDirectoryIterator.hasNext())
+                {
+                    theDirectory.add(theDirectoryIterator.next().clone()) ;
+
+                }
+
+            }
+        }
+
+     */
+    public void addEntry(DirectoryEntry entry)
+    {
+        theDirectory.add(entry) ;
     }
+
 }
